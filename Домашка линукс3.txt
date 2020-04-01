@@ -1,0 +1,23 @@
+
+1)cat > file1
++1.1) cat file1 >> file2
++1.2)ln -s file1 file3 сим ссыл
++1.3)ln file4 file1 
++1.4) ls -li 
++1.5) file1 - удален, file2 - в норме, file3 - будет существовать, но будет не доступен пока в него не заложат данные, если добавить что-либо
+ тогда создастся обратно file1 с тем что добавили в file3, file4 - без изменений
+
+
+2) mv file1 file11
+    mv file2 file22
+    mv file3 file33
+    mv file4 file44
+2.1) ln -s newfile1 newfile5
+2.2) Жестка ссылка работает, символьная ссылка не работает (пока не добавить в нее новые данные). Данные выводятся только у жесткой ссылки.
+
+
+
+3)touch file1 file2
+3.1) (chmod 664 file1) (chmod u+rw,g+rw,o+r file1)
+3.2) (chmod 600 file2) (chmod u+rw,g-rwx,o-rwx)
+4) sudo useradd userroot -p $(openssl passwd 123456) -s /bin/bash -G sudo -d /home/userroot -m
